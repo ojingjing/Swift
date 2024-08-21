@@ -5,6 +5,9 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+import LoginScreen from './(tabs)/login';
+
+import Login1Screen from './(pages)/login1';
 
 import { useColorScheme } from '@/components/useColorScheme';
 
@@ -53,6 +56,8 @@ function RootLayoutNav() {
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="(tabs)/login" options={{ title: 'Login Screen' }} />
+        <Stack.Screen name="(pages)/login1" options={{ title: 'Sign Up Screen' }} />
       </Stack>
     </ThemeProvider>
   );
