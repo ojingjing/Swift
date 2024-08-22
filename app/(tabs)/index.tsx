@@ -47,6 +47,7 @@ export default function App() {
   const [markers, setMarkers] = useState([]);
   return (
     <View style={styles.container}>
+
       <MapView
         style={styles.map}
         ref={mapRef}
