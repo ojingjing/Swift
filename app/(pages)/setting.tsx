@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, Picker } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import Slider from '@react-native-community/slider';
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+
+import { Picker } from "@react-native-picker/picker";
+
+import { Ionicons } from "@expo/vector-icons";
+import Slider from "@react-native-community/slider";
 
 export default function SettingsPage() {
   const [fontSize, setFontSize] = useState(14);
-  const [fontSetting, setFontSetting] = useState('default');
+  const [fontSetting, setFontSetting] = useState("default");
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const toggleDarkMode = () => setIsDarkMode(true);
@@ -20,7 +23,12 @@ export default function SettingsPage() {
         </TouchableOpacity>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>맞춤</Text>
-          <Ionicons name="options-outline" size={24} color="#fff" style={styles.titleIcon} />
+          <Ionicons
+            name="options-outline"
+            size={24}
+            color="#fff"
+            style={styles.titleIcon}
+          />
         </View>
       </View>
 
@@ -60,14 +68,17 @@ export default function SettingsPage() {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>모드</Text>
         <View style={styles.modeContainer}>
-          <TouchableOpacity 
-            style={[styles.modeButton, !isDarkMode && styles.selectedModeButton]} 
+          <TouchableOpacity
+            style={[
+              styles.modeButton,
+              !isDarkMode && styles.selectedModeButton,
+            ]}
             onPress={toggleLightMode}
           >
             <Text style={styles.modeText}>밝은 모드</Text>
           </TouchableOpacity>
-          <TouchableOpacity 
-            style={[styles.modeButton, isDarkMode && styles.selectedModeButton]} 
+          <TouchableOpacity
+            style={[styles.modeButton, isDarkMode && styles.selectedModeButton]}
             onPress={toggleDarkMode}
           >
             <Text style={styles.modeText}>다크 모드</Text>
@@ -81,26 +92,26 @@ export default function SettingsPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: "#000",
     padding: 20,
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 20,
   },
   backButton: {
     marginRight: 10,
   },
   titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   title: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 24,
-    fontWeight: 'bold',
-    marginRight: 5,  // 아이콘과 글씨 사이의 간격 조정
+    fontWeight: "bold",
+    marginRight: 5, // 아이콘과 글씨 사이의 간격 조정
   },
   titleIcon: {
     marginLeft: 0,
@@ -108,52 +119,52 @@ const styles = StyleSheet.create({
   section: {
     marginBottom: 30,
     padding: 20,
-    backgroundColor: '#68C3E5',  // 채도와 명도를 살짝 낮춘 색상
+    backgroundColor: "#68C3E5", // 채도와 명도를 살짝 낮춘 색상
     borderRadius: 10,
   },
   sectionTitle: {
-    color: '#000',
+    color: "#000",
     fontSize: 18,
     marginBottom: 10,
   },
   slider: {
-    width: '100%',
+    width: "100%",
     height: 40,
   },
   fontSizeLabel: {
     marginTop: 10,
-    color: '#000',
+    color: "#000",
     fontSize: 16,
   },
   pickerContainer: {
     borderWidth: 1,
-    borderColor: '#B0C4DE',  // 채도를 낮춘 테두리 색상
+    borderColor: "#B0C4DE", // 채도를 낮춘 테두리 색상
     borderRadius: 10,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   picker: {
     height: 50,
-    width: '100%',
-    backgroundColor: '#E0F7FF',  // 배경색의 채도와 명도를 낮춤
-    color: '#000',
+    width: "100%",
+    backgroundColor: "#E0F7FF", // 배경색의 채도와 명도를 낮춤
+    color: "#000",
   },
   modeContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   modeButton: {
     flex: 1,
     paddingVertical: 10,
-    backgroundColor: '#1E1E1E',
+    backgroundColor: "#1E1E1E",
     borderRadius: 5,
-    alignItems: 'center',
+    alignItems: "center",
     marginHorizontal: 5,
   },
   selectedModeButton: {
-    backgroundColor: '#007AFF',
+    backgroundColor: "#007AFF",
   },
   modeText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 16,
   },
 });
