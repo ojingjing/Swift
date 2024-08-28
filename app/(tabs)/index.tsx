@@ -58,7 +58,7 @@ export default function App() {
           minLength={1}
           placeholder="검색어 입력"
           query={{
-            key: "AIzaSyBTyK1QM6UcLdXPhGF_MATUWs-868I5OFc",
+            key: "",
             language: "ko",
             components: "country:kr",
           }}

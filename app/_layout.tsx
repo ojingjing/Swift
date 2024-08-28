@@ -6,8 +6,9 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 import LoginScreen from './(tabs)/login';
-
-import Login1Screen from './(pages)/login1';
+import Login1Screen from './(pages)/login2';
+import Mypage from './(tabs)/mypage';
+import Account from './(pages)/account';
 
 import { useColorScheme } from '@/components/useColorScheme';
 
@@ -57,7 +58,9 @@ function RootLayoutNav() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
         <Stack.Screen name="(tabs)/login" options={{ title: 'Login Screen' }} />
-        <Stack.Screen name="(pages)/login1" options={{ title: 'Sign Up Screen' }} />
+        <Stack.Screen name="(tabs)/mypage" options={{ title: 'Mypage!' }} />
+        <Stack.Screen name="(pages)/login2" options={{ title: 'Sign Up Screen' }} />
+        <Stack.Screen name="(pages)/account" options={{ title: 'Account' }} />
       </Stack>
     </ThemeProvider>
   );
