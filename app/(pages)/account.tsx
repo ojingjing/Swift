@@ -11,11 +11,6 @@ export default function ProfileUpdateScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Back Button */}
-      <TouchableOpacity style={styles.backButton}>
-        <Ionicons name="arrow-back" size={24} color="#fff" />
-      </TouchableOpacity>
-
       {/* Title Section */}
       <Text style={styles.title}>회원 정보 수정</Text>
 
@@ -89,9 +84,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#000',
     padding: 20,
-  },
-  backButton: {
-    marginBottom: 20,
   },
   title: {
     color: '#79D7FF',
