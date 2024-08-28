@@ -1,40 +1,61 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-
-import { Picker } from "@react-native-picker/picker";
-
-import { Ionicons } from "@expo/vector-icons";
+import React, { useState, createContext, useContext } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Switch } from "react-native";
 import Slider from "@react-native-community/slider";
 
-export default function SettingsPage() {
-  const [fontSize, setFontSize] = useState(14);
-  const [fontSetting, setFontSetting] = useState("default");
-  const [isDarkMode, setIsDarkMode] = useState(false);
+// Create a Theme Context
+const ThemeContext = createContext();
+
+export const useTheme = () => useContext(ThemeContext);
+
+export default function App() {
+  const [isDarkMode, setIsDarkMode] = useState(true); // Default to dark mode
 
   const toggleDarkMode = () => setIsDarkMode(true);
   const toggleLightMode = () => setIsDarkMode(false);
 
   return (
-    <View style={styles.container}>
+    <ThemeContext.Provider value={{ isDarkMode, toggleDarkMode, toggleLightMode }}>
+      <SettingsPage />
+    </ThemeContext.Provider>
+  );
+}
+
+function SettingsPage() {
+  const [fontSize, setFontSize] = useState(18); // Default font size to 18
+  const [smsAlert, setSmsAlert] = useState(false); // Default SMS alert off
+  const [pushAlert, setPushAlert] = useState(false); // Default push alert off
+  const { isDarkMode, toggleDarkMode, toggleLightMode } = useTheme();
+
+  return (
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: isDarkMode ? "#000" : "#fff" },
+      ]}
+    >
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity style={styles.backButton}>
-          <Ionicons name="arrow-back" size={24} color="#fff" />
+          {/* Back button can go here if needed */}
         </TouchableOpacity>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>맞춤</Text>
-          <Ionicons
-            name="options-outline"
-            size={24}
-            color="#fff"
-            style={styles.titleIcon}
-          />
+          <Text
+            style={[
+              styles.title,
+              {
+                color: isDarkMode ? "#79D7FF" : "#000",
+                fontSize: 24, // Title font size set to 24
+              },
+            ]}
+          >
+            설정
+          </Text>
         </View>
       </View>
 
       {/* Font Size Section */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>폰트 크기</Text>
+        <Text style={[styles.sectionTitle, { fontSize }]}>폰트 크기</Text>
         <Slider
           style={styles.slider}
           minimumValue={10}
@@ -45,28 +66,39 @@ export default function SettingsPage() {
           minimumTrackTintColor="#007AFF"
           maximumTrackTintColor="#000000"
         />
-        <Text style={styles.fontSizeLabel}>현재 크기: {fontSize}px</Text>
+        <Text style={[styles.fontSizeLabel, { fontSize }]}>현재 크기: {fontSize}px</Text>
       </View>
 
-      {/* Font Setting Section */}
+      {/* Parking Notification Settings */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>폰트 설정</Text>
-        <View style={styles.pickerContainer}>
-          <Picker
-            selectedValue={fontSetting}
-            style={styles.picker}
-            onValueChange={(itemValue) => setFontSetting(itemValue)}
-          >
-            <Picker.Item label="기본" value="default" />
-            <Picker.Item label="고딕" value="gothic" />
-            <Picker.Item label="세리프" value="serif" />
-          </Picker>
+        <Text style={[styles.sectionTitle, { fontSize }]}>주차 알림 설정</Text>
+
+        {/* SMS Notification */}
+        <View style={styles.notificationRow}>
+          <Text style={[styles.notificationText, { fontSize }]}>문자알림</Text>
+          <Switch
+            value={smsAlert}
+            onValueChange={setSmsAlert}
+            trackColor={{ false: "#767577", true: "#007AFF" }}
+            thumbColor={smsAlert ? "#fff" : "#f4f3f4"}
+          />
+        </View>
+
+        {/* Push Notification */}
+        <View style={styles.notificationRow}>
+          <Text style={[styles.notificationText, { fontSize }]}>푸시알림</Text>
+          <Switch
+            value={pushAlert}
+            onValueChange={setPushAlert}
+            trackColor={{ false: "#767577", true: "#007AFF" }}
+            thumbColor={pushAlert ? "#fff" : "#f4f3f4"}
+          />
         </View>
       </View>
 
       {/* Mode Section */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>모드</Text>
+        <Text style={[styles.sectionTitle, { fontSize }]}>모드</Text>
         <View style={styles.modeContainer}>
           <TouchableOpacity
             style={[
@@ -75,13 +107,13 @@ export default function SettingsPage() {
             ]}
             onPress={toggleLightMode}
           >
-            <Text style={styles.modeText}>밝은 모드</Text>
+            <Text style={[styles.modeText, { fontSize }]}>밝은 모드</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.modeButton, isDarkMode && styles.selectedModeButton]}
             onPress={toggleDarkMode}
           >
-            <Text style={styles.modeText}>다크 모드</Text>
+            <Text style={[styles.modeText, { fontSize }]}>다크 모드</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -92,7 +124,6 @@ export default function SettingsPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
     padding: 20,
   },
   header: {
@@ -108,13 +139,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    color: "#fff",
-    fontSize: 24,
+    fontSize: 24, // Title font size set to 24
     fontWeight: "bold",
     marginRight: 5, // 아이콘과 글씨 사이의 간격 조정
-  },
-  titleIcon: {
-    marginLeft: 0,
   },
   section: {
     marginBottom: 30,
@@ -124,7 +151,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     color: "#000",
-    fontSize: 18,
+    fontSize: 18, // Default font size set to 18
     marginBottom: 10,
   },
   slider: {
@@ -136,16 +163,14 @@ const styles = StyleSheet.create({
     color: "#000",
     fontSize: 16,
   },
-  pickerContainer: {
-    borderWidth: 1,
-    borderColor: "#B0C4DE", // 채도를 낮춘 테두리 색상
-    borderRadius: 10,
-    overflow: "hidden",
+  notificationRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginVertical: 10,
   },
-  picker: {
-    height: 50,
-    width: "100%",
-    backgroundColor: "#E0F7FF", // 배경색의 채도와 명도를 낮춤
+  notificationText: {
+    fontSize: 18, // Default font size set to 18
     color: "#000",
   },
   modeContainer: {

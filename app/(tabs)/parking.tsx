@@ -19,6 +19,7 @@ const ParkingInfoScreen = () => {
             <Text style={styles.subTitle}>장애인 전용</Text>
             <Text style={styles.largeInfoText}>5대 주차 가능</Text>
           </View>
+          <View style={styles.spacer} />
           <View style={styles.column}>
             <Text style={styles.subTitle}>비장애인 전용</Text>
             <Text style={styles.largeInfoText}>15대 주차 가능</Text>
@@ -35,16 +36,16 @@ const ParkingInfoScreen = () => {
           />
           <Text style={styles.sectionTitle}>현장 요금 및 운영 시간</Text>
         </View>
-        <View style={styles.row}>
+        <View style={styles.priceRow}>
           <Text style={styles.infoText}>30분: 무료</Text>
         </View>
-        <View style={styles.row}>
+        <View style={styles.priceRow}>
           <Text style={styles.infoText}>60분: 3,000원</Text>
         </View>
-        <View style={styles.row}>
+        <View style={styles.priceRow}>
           <Text style={styles.infoText}>120분: 6,000원</Text>
         </View>
-        <View style={styles.row}>
+        <View style={styles.priceRow}>
           <Text style={styles.infoText}>일주차: 12,000원</Text>
         </View>
         <View style={styles.row}>
@@ -64,31 +65,31 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: 30,
   },
   icon: {
     marginRight: 10,
   },
   headerText: {
     color: "#79D7FF",
-    fontSize: 20,
+    fontSize: 27,
     textAlign: "center",
     fontWeight: "bold",
   },
   section: {
     backgroundColor: "#79D7FF",
-    padding: 15,
+    padding: 20,
     marginBottom: 20,
     borderRadius: 10,
   },
   sectionHeader: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 10,
+    marginBottom: 20,
   },
   sectionTitle: {
     color: "#000",
-    fontSize: 18,
+    fontSize: 23,
     fontWeight: "bold",
   },
   row: {
@@ -104,6 +105,7 @@ const styles = StyleSheet.create({
     color: "#000",
     fontSize: 20,
     fontWeight: "bold",
+    marginBottom: 10,
   },
   largeInfoText: {
     color: "#000",
@@ -112,8 +114,16 @@ const styles = StyleSheet.create({
   },
   infoText: {
     color: "#000",
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "bold",
+  },
+  priceRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 15,
+  },
+  spacer: {
+    width: 20,
   },
 });
 
