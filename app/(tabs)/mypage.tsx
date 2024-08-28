@@ -1,8 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-// import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useRouter } from "expo-router";
+
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default function MyPage() {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>My page</Text>
@@ -27,12 +31,61 @@ export default function MyPage() {
 
       {/* 하단 파란색 박스 */}
       <View style={styles.bottomBox}>
-        <TouchableOpacity style={styles.menuItem}>
-          {/* <Icon name="account" size={24} color="#000" style={styles.icon} /> */}
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => router.push("/(pages)/account")}
+        >
+          <Icon name="account" size={24} color="#000" style={styles.icon} />
           <Text style={styles.boxText}>계정</Text>
-          {/* <Icon name="chevron-right" size={24} color="#000" style={styles.arrowIcon} /> */}
+          <Icon
+            name="chevron-right"
+            size={24}
+            color="#000"
+            style={styles.arrowIcon}
+          />
         </TouchableOpacity>
-        {/* 나머지 코드 */}
+
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => router.push("/(pages)/setting")}
+        >
+          <Icon name="cog" size={24} color="#000" style={styles.icon} />
+          <Text style={styles.boxText}>설정</Text>
+          <Icon
+            name="chevron-right"
+            size={24}
+            color="#000"
+            style={styles.arrowIcon}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => router.push("/(pages)/help")}
+        >
+          <Icon name="help-circle" size={24} color="#000" style={styles.icon} />
+          <Text style={styles.boxText}>도움</Text>
+          <Icon
+            name="chevron-right"
+            size={24}
+            color="#000"
+            style={styles.arrowIcon}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.menuItem, { borderBottomWidth: 0 }]}
+          onPress={() => router.push("/(pages)/logout")}
+        >
+          <Icon name="logout" size={24} color="#000" style={styles.icon} />
+          <Text style={styles.boxText}>로그아웃</Text>
+          <Icon
+            name="chevron-right"
+            size={24}
+            color="#000"
+            style={styles.arrowIcon}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -82,20 +135,22 @@ const styles = StyleSheet.create({
   bottomBox: {
     backgroundColor: "#79D7FF", // 파란색 배경
     width: "105%", // 화면 전체 너비로 설정
+    height: 350, // 높이를 더 크게 설정
     position: "absolute", // 절대 위치 설정
-    bottom: 0, // 화면의 하단에 배치
+    bottom: -50, // 화면 하단에서 조금 더 위로 올림
     left: 0, // 왼쪽 경계에 맞추기
     right: 0, // 오른쪽 경계에 맞추기
-    borderTopLeftRadius: 20, // 상단 좌측 모서리 둥글게
-    borderTopRightRadius: 20, // 상단 우측 모서리 둥글게
-    paddingVertical: 20, // 상하 여백
-    paddingHorizontal: 15, // 좌우 여백
+    borderTopLeftRadius: 30, // 상단 좌측 모서리 둥글게
+    borderTopRightRadius: 30, // 상단 우측 모서리 둥글게
+    paddingVertical: 30, // 상하 여백을 줄여서 위로 올리기
+    paddingHorizontal: 25, // 좌우 여백
+    justifyContent: "flex-start", // 내부 항목을 위쪽으로 정렬
   },
   menuItem: {
     flexDirection: "row", // 아이콘과 텍스트가 나란히 있도록 설정
     alignItems: "center", // 아이템 중앙 정렬
     justifyContent: "space-between", // 텍스트와 화살표 아이콘 간격 벌리기
-    paddingVertical: 15, // 각 항목의 상하 여백
+    paddingVertical: 20, // 각 항목의 상하 여백 유지
     borderBottomWidth: 1, // 하단 경계선
     borderBottomColor: "#007BA3", // 경계선 색상
   },
