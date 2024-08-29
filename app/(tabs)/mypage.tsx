@@ -1,11 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { useRouter } from 'expo-router';
+import { useRouter } from "expo-router";
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default function MyPage() {
-const router = useRouter();
+  const router = useRouter();
 
   return (
     <View style={styles.container}>
@@ -31,28 +31,60 @@ const router = useRouter();
 
       {/* 하단 파란색 박스 */}
       <View style={styles.bottomBox}>
-        <TouchableOpacity style={styles.menuItem} onPress={() => router.push('/(pages)/account')}>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => router.push("/(pages)/account")}
+        >
           <Icon name="account" size={24} color="#000" style={styles.icon} />
           <Text style={styles.boxText}>계정</Text>
-          <Icon name="chevron-right" size={24} color="#000" style={styles.arrowIcon} />
+          <Icon
+            name="chevron-right"
+            size={24}
+            color="#000"
+            style={styles.arrowIcon}
+          />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.menuItem} onPress={() => router.push('/(pages)/setting')}>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => router.push("/(pages)/setting")}
+        >
           <Icon name="cog" size={24} color="#000" style={styles.icon} />
           <Text style={styles.boxText}>설정</Text>
-          <Icon name="chevron-right" size={24} color="#000" style={styles.arrowIcon} />
+          <Icon
+            name="chevron-right"
+            size={24}
+            color="#000"
+            style={styles.arrowIcon}
+          />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.menuItem} onPress={() => router.push('/(pages)/help')}>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => router.push("/(pages)/help")}
+        >
           <Icon name="help-circle" size={24} color="#000" style={styles.icon} />
           <Text style={styles.boxText}>도움</Text>
-          <Icon name="chevron-right" size={24} color="#000" style={styles.arrowIcon} />
+          <Icon
+            name="chevron-right"
+            size={24}
+            color="#000"
+            style={styles.arrowIcon}
+          />
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.menuItem, { borderBottomWidth: 0 }]} onPress={() => router.push('/(pages)/logout')}>
+        <TouchableOpacity
+          style={[styles.menuItem, { borderBottomWidth: 0 }]}
+          onPress={() => router.push("/(pages)/logout")}
+        >
           <Icon name="logout" size={24} color="#000" style={styles.icon} />
           <Text style={styles.boxText}>로그아웃</Text>
-          <Icon name="chevron-right" size={24} color="#000" style={styles.arrowIcon} />
+          <Icon
+            name="chevron-right"
+            size={24}
+            color="#000"
+            style={styles.arrowIcon}
+          />
         </TouchableOpacity>
       </View>
     </View>
