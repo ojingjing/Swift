@@ -23,6 +23,7 @@ export default function App() {
         // region={region}
         // onPress={handleMapPress}
       >
+
         <View style={styles.map_on_box}>
           <View>
             <Link href="/modal" asChild>
@@ -53,6 +54,7 @@ export default function App() {
             </TouchableOpacity>
           </View>
         </View>
+
       </MapView>
     </View>
   );
