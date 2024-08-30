@@ -1,3 +1,4 @@
+import { router, useNavigation } from "expo-router";
 import React from "react";
 import {
   View,
@@ -7,11 +8,24 @@ import {
   Image,
   StyleSheet,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default function CardRegistrationScreen() {
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* Title Section */}
+      <View>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.goBack();
+          }}
+        >
+          <Icon name="chevron-left" size={30} color="#90D5FB" />
+        </TouchableOpacity>
+      </View>
       <View style={styles.titleSection}>
         <Text style={styles.title}>복지 카드 등록</Text>
         <Text style={styles.subtitle}>CARD</Text>
@@ -45,7 +59,7 @@ export default function CardRegistrationScreen() {
       <TouchableOpacity style={styles.registerButton}>
         <Text style={styles.registerButtonText}>등록하기</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -54,7 +68,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#000",
     paddingHorizontal: 20,
-    paddingTop: 40,
+    // paddingTop: 10,
   },
 
   backButtonText: {
@@ -63,6 +77,7 @@ const styles = StyleSheet.create({
   },
   titleSection: {
     marginBottom: 10,
+    marginTop: 20,
   },
   title: {
     color: "#79D7FF",

@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const ParkingInfoScreen = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Icon name="parking" size={24} color="#79D7FF" style={styles.icon} />
         <Text style={styles.headerText}>해운대광장 공영주차장</Text>
@@ -52,7 +53,7 @@ const ParkingInfoScreen = () => {
           <Text style={styles.largeInfoText}>연중무휴 24시간</Text>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

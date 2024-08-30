@@ -3,12 +3,13 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { useRouter } from "expo-router";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function MyPage() {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.title}>My page</Text>
 
       {/* 프로필 섹션 */}
@@ -22,10 +23,12 @@ export default function MyPage() {
 
       {/* 복지카드 섹션 */}
       <View style={styles.cardSection}>
-        <Image
-          source={{ uri: "https://via.placeholder.com/200x100" }} // 복지카드 이미지 URL 또는 로컬 경로
-          style={styles.cardImage}
-        />
+        <TouchableOpacity onPress={() => router.push("/(pages)/card")}>
+          <Image
+            source={{ uri: "https://via.placeholder.com/200x100" }} // 복지카드 이미지 URL 또는 로컬 경로
+            style={styles.cardImage}
+          />
+        </TouchableOpacity>
         <Text style={styles.cardText}>복지카드 등록 완료</Text>
       </View>
 
@@ -87,7 +90,7 @@ export default function MyPage() {
           />
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -95,7 +98,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#000", // 배경색 검정색
-    paddingTop: 20, // 상단 공백
     paddingLeft: 20, // 왼쪽 공백
   },
   title: {
@@ -134,17 +136,17 @@ const styles = StyleSheet.create({
   },
   bottomBox: {
     backgroundColor: "#79D7FF", // 파란색 배경
-    width: "105%", // 화면 전체 너비로 설정
-    height: 350, // 높이를 더 크게 설정
+    // width: "105%", // 화면 전체 너비로 설정
+    height: 400, // 높이를 더 크게 설정
     position: "absolute", // 절대 위치 설정
-    bottom: -50, // 화면 하단에서 조금 더 위로 올림
+    bottom: 0, // 화면 하 단에서 조금 더 위로 올림
     left: 0, // 왼쪽 경계에 맞추기
     right: 0, // 오른쪽 경계에 맞추기
-    borderTopLeftRadius: 30, // 상단 좌측 모서리 둥글게
-    borderTopRightRadius: 30, // 상단 우측 모서리 둥글게
+    borderRadius: 30, // 상단 좌측 모서리 둥글게
     paddingVertical: 30, // 상하 여백을 줄여서 위로 올리기
     paddingHorizontal: 25, // 좌우 여백
     justifyContent: "flex-start", // 내부 항목을 위쪽으로 정렬
+    // marginBottom: 100,
   },
   menuItem: {
     flexDirection: "row", // 아이콘과 텍스트가 나란히 있도록 설정

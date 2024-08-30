@@ -2,6 +2,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import {
   DarkTheme,
   DefaultTheme,
+  StackRouter,
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
@@ -55,12 +56,21 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
+        {/* initialRouteName="(pages)/start" */}
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="(pages)" options={{ headerShown: false }} />
+
+        {/* <Stack.Screen name="(pages)" options={{ headerShown: false }} /> */}
+
+        <Stack.Screen name="(pages)/start" options={{ headerShown: false }} />
+        <Stack.Screen name="(pages)/login" options={{ headerShown: false }} />
+        <Stack.Screen name="(pages)/card" options={{ headerShown: false }} />
+
+        <Stack.Screen name="(pages)/parking" options={{ headerShown: false }} />
         <Stack.Screen
-          name="modal"
-          options={{ presentation: "modal", headerShown: false }}
+          name="(pages)/inputdetail"
+          options={{ headerShown: false }}
         />
+
         <Stack.Screen name="(pages)/login1" options={{ headerShown: false }} />
         <Stack.Screen name="(pages)/login2" options={{ headerShown: false }} />
         <Stack.Screen name="(pages)/login3" options={{ headerShown: false }} />

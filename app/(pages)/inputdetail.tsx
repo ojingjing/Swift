@@ -6,16 +6,22 @@ import {
   FlatList,
   TouchableOpacity,
   ScrollView,
+  Text,
+  View,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import EditScreenInfo from "@/components/EditScreenInfo";
-import { Text, View } from "@/components/Themed";
+// import {  } from "@/components/Themed";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { useNavigation } from "@react-navigation/native";
+import { useRouter } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
 // import { ScrollView } from "react-native-reanimated/lib/typescript/Animated";
 
-export default function ModalScreen() {
+export default function InputDetail() {
   const navigation = useNavigation();
+  const router = useRouter();
+
   const data = [
     {
       id: "1",
@@ -39,8 +45,13 @@ export default function ModalScreen() {
 
   const renderItem = ({ item }) => (
     <ScrollView>
-      <TouchableOpacity style={styles.item}>
-        <View style={{ backgroundColor: "#000000", marginLeft: 10 }}>
+      <TouchableOpacity
+        style={styles.item}
+        onPress={() => {
+          router.push("/parking");
+        }}
+      >
+        <View style={{ marginLeft: 10 }}>
           <Icon
             name="parking"
             size={20}
@@ -71,7 +82,19 @@ export default function ModalScreen() {
     </ScrollView>
   );
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <View style={{ backgroundColor: "#000" }}>
+        <TouchableOpacity
+          style={{
+            paddingHorizontal: 20,
+          }}
+          onPress={() => {
+            navigation.goBack();
+          }}
+        >
+          <Icon name="chevron-left" size={30} color="#90D5FB" />
+        </TouchableOpacity>
+      </View>
       <View style={styles.inputContainer}>
         <Icon
           name="magnify"
@@ -138,14 +161,14 @@ export default function ModalScreen() {
           keyExtractor={(item) => item.id}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000000",
+    backgroundColor: "#000",
   },
   title: {
     fontSize: 20,

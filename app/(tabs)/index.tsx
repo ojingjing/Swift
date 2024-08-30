@@ -23,21 +23,18 @@ export default function App() {
         // region={region}
         // onPress={handleMapPress}
       >
-        <View style={styles.map_on_box}>
-          <View>
-            <Link href="/modal" asChild>
-              <TextInput
-                style={styles.input}
-                placeholder="검색어 입력"
-                placeholderTextColor="lightgray"
+        <SafeAreaView style={styles.map_on_box}>
+          <Link href="/(pages)/inputdetail" asChild>
+            <TextInput
+              style={styles.input}
+              placeholder="검색어 입력"
+              placeholderTextColor="lightgray"
 
-                // value={searchQuery}
-                // onChangeText={(text) => setSearchQuery(text)}
-                // onSubmitEditing={handleSearch}
-              />
-            </Link>
-          </View>
-
+              // value={searchQuery}
+              // onChangeText={(text) => setSearchQuery(text)}
+              // onSubmitEditing={handleSearch}
+            />
+          </Link>
           <View style={styles.btn_box}>
             <TouchableOpacity style={styles.btu}>
               <Text>필터</Text>
@@ -52,7 +49,7 @@ export default function App() {
               <Text>거리</Text>
             </TouchableOpacity>
           </View>
-        </View>
+        </SafeAreaView>
       </MapView>
     </View>
   );
@@ -86,8 +83,6 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0,0, 0.7)",
     marginRight: 10,
     marginLeft: 10,
-    marginTop: 60,
-
     borderRadius: 8,
     paddingLeft: 20,
     fontSize: 18,
@@ -95,6 +90,7 @@ const styles = StyleSheet.create({
 
   btn_box: {
     flexDirection: "row",
+    marginTop: 10,
     justifyContent: "space-around",
   },
   btu: {
